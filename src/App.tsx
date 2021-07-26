@@ -1,5 +1,14 @@
 import React, { useMemo, useState } from "react";
-import { Box, Button, Center, ChakraProvider, Container, Flex, Spinner, Stack, } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  ChakraProvider,
+  Container,
+  Flex,
+  Spinner,
+  Stack,
+} from "@chakra-ui/react";
 import { SWRConfig, useSWRInfinite } from "swr";
 import { PostItem, PostModel } from "./components/PostItem";
 import { fetcher } from "./fetcher";
@@ -12,7 +21,9 @@ function App() {
   const [filterState, setFilterState] = useState<FilterState>({
     term: "",
   });
-  const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite<PostModel[]>(
+  const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite<
+    PostModel[]
+  >(
     (index) =>
       `/posts?q=${filterState.term}&_limit=${PAGE_SIZE}&_start=${
         index * PAGE_SIZE
@@ -39,13 +50,7 @@ function App() {
   }, [data]);
 
   return (
-    <SWRConfig
-      value={{
-        refreshInterval: 3000,
-        /* @ts-ignore */
-        fetcher: (...args) => fetch(...args).then((res) => res.json()),
-      }}
-    >
+    <SWRConfig value={{}}>
       <ChakraProvider>
         <Container maxW="container.xl" minH="100vh">
           <SearchInput

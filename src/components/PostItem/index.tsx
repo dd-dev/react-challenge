@@ -10,7 +10,7 @@ export type PostModel = {
   body: string;
 };
 
-type User = {
+type UserModel = {
   id: number;
   name: string;
   username: string;
@@ -35,7 +35,7 @@ type User = {
 };
 
 function useUser(id: number) {
-  const { data, error } = useSWR<User>(`/users/${id}`, fetcher);
+  const { data, error } = useSWR<UserModel>(`/users/${id}`, fetcher);
 
   return { user: data, error };
 }

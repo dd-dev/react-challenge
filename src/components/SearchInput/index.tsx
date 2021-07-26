@@ -1,11 +1,17 @@
 import React, { FC, useState } from "react";
-import { IconButton, Input, InputGroup, InputLeftElement, InputRightElement, } from "@chakra-ui/react";
+import {
+  IconButton,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+} from "@chakra-ui/react";
 import { CloseIcon, SearchIcon } from "@chakra-ui/icons";
 import { useDebounce } from "react-use";
 
 export const SearchInput: FC<{ onChange: (value: string) => void }> = ({
-                                                                         onChange,
-                                                                       }) => {
+  onChange,
+}) => {
   const [termValue, setTermValue] = useState<string>("");
 
   useDebounce(() => onChange(termValue), 300, [termValue]);
@@ -28,7 +34,7 @@ export const SearchInput: FC<{ onChange: (value: string) => void }> = ({
           children={
             <IconButton
               onClick={() => setTermValue("")}
-              aria-label="Search database"
+              aria-label="Reset"
               icon={<CloseIcon />}
             />
           }
